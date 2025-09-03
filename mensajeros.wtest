@@ -1,0 +1,26 @@
+import mensajeros.*
+
+describe "Test de mensajeros"{
+
+    test "El paquete está pago"{
+        paquete.pago(true)
+        assert.equals(paquete.pago(), true)
+    }
+
+    test "El paquete no está pago"{
+        paquete.pago(false)
+        assert.equals(paquete.pago(), false)
+    }
+
+    test "1. El paquete de George que no está pago no puede ser llevado por Neo a la matrix."{
+        
+    }
+    test "3. El paquete de George que sí está pago no puede ser llevado por Sara (que pesa 70kg) a Brooklyn si es que utiliza un camión con un acoplado"{
+        paquete.pago(true)
+        paquete.destino(puenteDeBrooklyn)
+        saraConnor.pesoCorporal(70)
+        saraConnor.vehiculo(camion)
+        camion.cantidadDeAcoplados(1)
+        assert.notThat(paquete.puedeEntregarsePor(saraConnor))
+    }
+}
