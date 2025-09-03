@@ -1,11 +1,10 @@
 object paquete{
-	var property pago = null
-	var property destino = null
+	var property pago = false
+	var property destino = laMatrix
 	method puedeEntregarsePor(mensajero){
 		return pago and destino.puedePasar(mensajero)
 	}
 }
-
 object puenteDeBrooklyn{
 	method puedePasar(persona){
 		return (persona.peso() <= 1000)

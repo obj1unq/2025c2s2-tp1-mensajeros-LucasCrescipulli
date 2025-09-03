@@ -13,7 +13,15 @@ describe "Test de mensajeros"{
     }
 
     test "1. El paquete de George que no está pago no puede ser llevado por Neo a la matrix."{
-        
+        paquete.pago(false)
+        paquete.destino(laMatrix)
+        assert.notThat(paquete.puedeEntregarsePor(neo))
+    }
+
+    test "2. El paquete de George que sí está pago puede ser llevado por Jean a la matrix"{
+        paquete.pago(true)
+        paquete.destino(laMatrix)
+        assert.that(paquete.puedeEntregarsePor(jeanGray))
     }
     test "3. El paquete de George que sí está pago no puede ser llevado por Sara (que pesa 70kg) a Brooklyn si es que utiliza un camión con un acoplado"{
         paquete.pago(true)
@@ -22,5 +30,13 @@ describe "Test de mensajeros"{
         saraConnor.vehiculo(camion)
         camion.cantidadDeAcoplados(1)
         assert.notThat(paquete.puedeEntregarsePor(saraConnor))
+    }
+
+    test "4. La entrega anterior puede hacerse si Sara usa una moto"{
+        paquete.pago(true)
+        paquete.destino(puenteDeBrooklyn)
+        saraConnor.pesoCorporal(70)
+        saraConnor.vehiculo(moto)
+        assert.that(paquete.puedeEntregarsePor(saraConnor))
     }
 }
